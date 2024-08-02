@@ -12,9 +12,12 @@ const Home = () => {
 
   const handleShortenClick = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/shorturls", {
-        mainUrl,
-      });
+      const response = await axios.post(
+        "https://short-url-5gjx.onrender.com/shorturls",
+        {
+          mainUrl,
+        }
+      );
       setShortUrl(response.data.newUrl);
     } catch (error) {
       console.error("Error creating short URL:", error);
