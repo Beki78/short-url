@@ -3,10 +3,12 @@ import dotenv from "dotenv";
 import { nanoid } from "nanoid";
 import mongoose from "mongoose";
 import Schema from "./models/urls.mjs";
+import cors from "cors"
 
 dotenv.config();
 const app = express();
 app.use(express.json());
+app.use(cors())
 
 app.get("/:id", async (req, res) => {
   try {
@@ -18,12 +20,10 @@ app.get("/:id", async (req, res) => {
     const urlData = await Schema.findOne({ newUrl });
 
     if (!urlData) {
-      console.log("Short URL not found");
       return res.status(404).send("Short URL not found");
     }
 
     console.log(`Redirecting to main URL: ${urlData.mainUrl}`);
-    res.status(200).send(urlData.newUrl)
     res.redirect(urlData.mainUrl);
   } catch (error) {
     console.error(error.message);
