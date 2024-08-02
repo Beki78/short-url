@@ -7,7 +7,8 @@ const URLSCHEMA = new mongoose.Schema({
     },
     newUrl:{
         type: String,
-        require: true
+        require: true,
+        unique: true
     }
 })
 const Schema = mongoose.model("UrlSchema", URLSCHEMA);
